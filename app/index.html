@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection" />
 
     <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
@@ -22,26 +23,62 @@
                 <li><a href="#">WEBSITE</a></li>
                 <li><a href="#">REGISTER</a></li>
                 <li><a href="#">FORUMS</a></li>
+
+                <li><a class="logo-red">&nbsp;</a></li>
             </ul>
             <ul class="right">
-                <li id="settings">
+                <li onclick="switchWindow('settings')" class="settings">
                     <a href="#">&nbsp;</a>
                 </li>
-                <li id="minimise">
+                <li class="minimise">
                     <a href="#">&nbsp;</a>
                 </li>
-                <li id="close">
+                <li class="close">
                     <a href="#">&nbsp;</a>
                 </li>
             </ul>
         </div>
     </nav>
     <main>
-        <div class="container">
+        <div class="container layer">
+            <div class="row margin">
+            </div>
+            <div class="row valign-wrapper logo-container">
+                <div class="col s12">
+                    <img class="logo right" src="./images/logos/blue/logo_blue_coloredtext_1_small.png">
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="main" class="container">
             <div id="content-container" class="row">
                 <div id="notes" class="col s8">
                     <div class="content-header">PATCH NOTES</div>
                     <div class="scrollable">
+                        <div class="row">
+                            <div class="col s1 version">
+                                v2.1
+                            </div>
+                            <div class="col s11 notes">
+                                <ul>
+                                    <li>Developed with ❤ by XenoWarrior.</li>
+                                    <li>Love the design by Deka.</li>
+                                    <li>Special thanks to Senpai Zenpai for his cutting skills.</li>
+                                    <li><a href="#">Read more...</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s1 version">
+                                v2.0
+                            </div>
+                            <div class="col s11 notes">
+                                <ul>
+                                    <li>Added cheat mode, use ALT+F4 the launcher to turn it on.</li>
+                                    <li><a href="#">Read more...</a></li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col s1 version">
                                 v1.1
@@ -141,10 +178,23 @@
                 </div>
             </div>
         </div>
+        <div id="settings" class="container">
+            <div class="row content-container">
+                <div class="col s12">
+                    <a onclick="switchWindow('main');" class="waves-effect waves-light btn">Back</a>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
-        <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
+        <!-- Insert this line above script imports
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+        <script>if (window.module) module = window.module;</script>  -->
+        
+        <script type="text/javascript" src="./js/jquery.js"></script>
         <script type="text/javascript" src="./js/launcher.js"></script>
+
+
     </footer>
 </body>
 
