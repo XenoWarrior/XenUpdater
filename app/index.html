@@ -27,7 +27,7 @@
                 <li><a class="logo-red">&nbsp;</a></li>
             </ul>
             <ul class="right">
-                <li onclick="switchWindow('settings')" class="settings">
+                <li class="settings">
                     <a href="#">&nbsp;</a>
                 </li>
                 <li class="minimise">
@@ -181,7 +181,7 @@
         <div id="settings" class="container">
             <div class="row content-container">
                 <div class="col s12">
-                    <a onclick="switchWindow('main');" class="waves-effect waves-light btn">Back</a>
+                    <a id="settings-back" class="waves-effect waves-light btn">Back</a>
                 </div>
             </div>
         </div>
@@ -192,9 +192,9 @@
         <script>if (window.module) module = window.module;</script>  -->
         
         <script type="text/javascript" src="./js/jquery.js"></script>
+        <script type="text/javascript" src="./js/Lib/Launcher.js"></script>
+        <script type="text/javascript" src="./js/Lib/PackageManager.js"></script>
         <script type="text/javascript" src="./js/launcher.js"></script>
-
-
     </footer>
 </body>
 
