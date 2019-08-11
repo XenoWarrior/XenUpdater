@@ -1,6 +1,11 @@
 /** Main **/
 
 * {}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
 main {
     background-image: url('../images/box_background_empty.png');
     background-repeat: no-repeat;
@@ -14,11 +19,12 @@ main {
     bottom: 0;
     z-index: -999;
     padding-top: 32px;
+    
+    flex: 1 0 auto;
 }
 .container {
     margin-top: 100px;
 }
-
 /** Navigation **/
 
 nav .nav-wrapper {
@@ -29,7 +35,6 @@ nav .nav-wrapper {
 nav li {
     font-family: sans-serif, Arial, Helvetica;
     font-size: 14px;
-    /* text-shadow: 0px 0px 5px #FFFFFF; */
     transition: all .5s ease;
 }
 nav li:hover {
@@ -127,7 +132,7 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 
 /** Play Button **/
 
-#play-game {
+.play {
     background-image: url('../images/start_normal.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -136,12 +141,12 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
     text-align: center;
     cursor: pointer;
 }
-#play-game:hover {
+.play:hover {
     background-image: url('../images/start_hover.png');
     background-repeat: no-repeat;
     transition: all .5s ease;
 }
-#play-game:disabled {
+.play:disabled {
     background-image: url('../images/start_updating.png');
     background-repeat: no-repeat;
     transition: all .5s ease;
@@ -149,18 +154,25 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 
 /** Progress Bar **/
 
-#progress-bar {
-    background-image: url('../images/progress-bar-back.png');
-    opacity: 0.2;
-    width: 851px;
-    height: 69px;
+.progress {
+    background-color: rgba(0, 148, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .2);
+    width: 100%;
+    height: 14px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: all .5s ease;
 }
-#progress-bar-front {
-    background-image: url('../images/progress-bar-back.png');
-    opacity: 0.5;
+.progress-back {
+    background-color: rgba(32, 143, 233, 1);
+    width: 90%;
+    height: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    transition: all .5s ease;
 }
 
 /** Scrollbar **/
