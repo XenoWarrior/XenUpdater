@@ -4,6 +4,7 @@
 main {
     background-image: url('../images/box_background_empty.png');
     background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -80,27 +81,24 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 
 /** Components **/
 
-#status {
-    background-image: url('../images/server-status.png');
-    height: 30px;
-    width: 587px;
-    text-align: right;
-    color: #FFFFFF;
-    font-size: 12px;
-}
-#status div {
-    line-height: 29px;
-}
 #patch-notes {
-    background-image: url('../images/patch-notes.png');
+    border: 1px solid rgba(255, 255, 255, .2);
+    background-color: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
-    width: 587px;
 }
 #news {
     overflow: hidden;
 }
+#status {
+    position:relative;
+    text-align: right;
+    line-height: 29px;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-top: none;
+}
 #news, #patch-notes {
-    height: 267px;
     text-align: left;
     font-size: 12px;
     color: #FFFFFF;
@@ -121,12 +119,11 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 
 #content-container {
     margin-top: 70px;
-    margin-left: 124px;
+    margin-bottom: 0px;
 }
 .content-header {
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, .2);
-    width: 100%;
 }
 .content-text {
     padding: 10px;
@@ -157,11 +154,13 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 }
 
 /** Progress Bar **/
+
 #progress-bar {
     background-image: url('../images/progress-bar-back.png');
     opacity: 0.2;
     width: 851px;
-    height: 69px;  display: block;
+    height: 69px;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
