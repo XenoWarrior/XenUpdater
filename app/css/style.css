@@ -1,11 +1,6 @@
 /** Main **/
 
 * {}
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
 main {
     background-image: url('../images/box_background_empty.png');
     background-repeat: no-repeat;
@@ -165,14 +160,21 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
     transition: all .5s ease;
 }
 .progress-back {
+    display: block;
     background-color: rgba(32, 143, 233, 1);
-    width: 90%;
+    width: 0%;
     height: 14px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     float: left;
     transition: all .5s ease;
+}
+.progress-limiter {
+    background-image: url('../images/progress-limiter.png');
+    width: 3px;
+    height: 14px;
+    float: right;
 }
 
 /** Scrollbar **/
