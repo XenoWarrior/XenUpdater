@@ -1,48 +1,28 @@
-const electron = require('electron');
-var currWindow = "main";
+/**
+ * Main launcher code.
+ */
 
-function bindEventListeners() {
-    document.querySelector("li.minimise").addEventListener("click", function (e) {
-        var window = electron.remote.getCurrentWindow();
-        window.minimize();
-    });
+// Create an instance of the launcher
+async function initialiseLauncher() {
+    // Initialise launcher
+    let launcher = new Launcher(true);
+    try {
+        launcher.bindEventListeners();
+    } catch (exception) {
+        console.error(exception);
+    }
 
-    document.querySelector("li.close").addEventListener("click", function (e) {
-        var window = electron.remote.getCurrentWindow();
-        window.close();
-    });
-}
+    // Initialise packages from server
+    let packageManager = new PackageManager("ageofaincrad");
+    try {
+        let result = await packageManager.initialiseService();
+        result ? launcher.switchWindow("main") : launcher.handleError("Unable to connect to server.");
 
-function switchWindow(w) {
-    console.log(w);
-    document.querySelector(`#${currWindow}`).setAttribute("style", `display:none;`);
-    document.querySelector(`#${w}`).setAttribute("style", `display: block`);
-}
-
-function changeBackroung(id) {
-    document.querySelector("main").setAttribute("style", `background-image: url('./images/backgrounds/background_${id}.png')`);
-}
-
-function updateProgress(p) {
-    if (p === 100) {
-        document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;box-shadow: 0px 0px 50px green;`);
-        document.querySelector("div.progress").setAttribute("style", `box-shadow: 0px 0px 50px rgba(32, 143, 233, 0.6)`);
-        document.querySelector(".play.disabled").setAttribute("class", `play`);
-    } else {
-        document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;`);
+        launcher.doProgressTest();
+    } catch (exception) {
+        console.error(exception);
+        launcher.handleError(exception.message);
     }
 }
 
-function doProgressTest() {
-    let p = 0;
-    let interval = setInterval(() => {
-        if (p < 100) {
-            updateProgress(++p);
-        } else {
-            clearInterval(interval);
-        }
-    }, 40);
-}
-
-bindEventListeners();
-doProgressTest();
+initialiseLauncher();

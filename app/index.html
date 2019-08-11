@@ -27,7 +27,7 @@
                 <li><a class="logo-red">&nbsp;</a></li>
             </ul>
             <ul class="right">
-                <li onclick="switchWindow('settings')" class="settings">
+                <li class="settings">
                     <a href="#">&nbsp;</a>
                 </li>
                 <li class="minimise">
@@ -39,18 +39,43 @@
             </ul>
         </div>
     </nav>
+    <div class="background"></div>
     <main>
-        <div class="container layer">
-            <div class="row margin">
-            </div>
-            <div class="row valign-wrapper logo-container">
+        <div id="connection" class="container center valign-wrapper">
+            <div class="row content-container">
+                <h3>Connecting...</h3>
                 <div class="col s12">
-                    <img class="logo right" src="./images/logos/blue/logo_blue_coloredtext_1_small.png">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="message" class="col s12">
+                        Getting ready for the world of Aincrad...
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
         <div id="main" class="container">
+            <div class="container layer">
+                <div class="row margin">
+                </div>
+                <div class="row valign-wrapper logo-container">
+                    <div class="col s12">
+                        <img class="logo right" src="./images/logos/blue/logo_blue_coloredtext_1_small.png">
+                    </div>
+                </div>
+            </div>
             <div id="content-container" class="row">
                 <div id="notes" class="col s8">
                     <div class="content-header">PATCH NOTES</div>
@@ -176,25 +201,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="col s12 center">
+                    <span class="percent"><span id="percent">X%</span></span>
+                </div>
             </div>
         </div>
         <div id="settings" class="container">
             <div class="row content-container">
                 <div class="col s12">
-                    <a onclick="switchWindow('main');" class="waves-effect waves-light btn">Back</a>
+                    <a id="settings-back" class="waves-effect waves-light btn">Back</a>
+                </div>
+            </div>
+        </div>
+        <div id="error" class="container">
+            <div class="row content-container">
+                <h2>An error has occured...</h2>
+                <div class="message" class="col s12">
                 </div>
             </div>
         </div>
     </main>
     <footer>
-        <!-- Insert this line above script imports
-        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-        <script>if (window.module) module = window.module;</script>  -->
-        
         <script type="text/javascript" src="./js/jquery.js"></script>
+        <script type="text/javascript" src="./js/Lib/Launcher.js"></script>
+        <script type="text/javascript" src="./js/Lib/PackageManager.js"></script>
         <script type="text/javascript" src="./js/launcher.js"></script>
-
-
     </footer>
 </body>
 

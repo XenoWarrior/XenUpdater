@@ -2,7 +2,6 @@ const electron = require('electron');
 const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
-    // Create the browser window.
     let window = new BrowserWindow({
         width: 1110,
         height: 608,
@@ -13,12 +12,12 @@ function createWindow() {
         webPreferences: { nodeIntegration: true }
     });
 
-    // and load the index.html of the app.
     window.setMenu(null);
     window.loadFile('./app/index.html');
     window.setMinimumSize(1110, 608);
+    window.setMaximumSize(1110, 608);
     window.setFullScreenable(false);
-    window.openDevTools()
+    // window.openDevTools()
 }
 
 app.on('ready', createWindow);
