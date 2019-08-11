@@ -38,13 +38,18 @@ class PackageManager {
 
     /**
      * GetPackage
-     * Will fetch a specific package configuration from the updater service.
+     * Will fetch a specific package configuration from the updater service / memory.
      * @param {string} p: the package name.
      */
     async getPackage(p) {
         try {
-            let data = await fetch(`https://xenupdater.projectge.com/${this.serviceName}/xu/update/${p}.json`);
-            return await data.json();
+            if (this.packageList.hasOwnProperty(p)) {
+                return this.packageList(p);
+            } else {
+                let data = await fetch(`https://xenupdater.projectge.com/${this.serviceName}/xu/update/${p}.json`);
+                return await data.json();
+            }
+
         } catch (exception) {
             throw exception;
         }
@@ -56,23 +61,68 @@ class PackageManager {
      * @param {string} p: the package name.
      */
     async getFiles(p) {
-        
+        if (this.packageList.hasOwnProperty(p)) {
+            console.log(this.packageList);
+        }
     }
 
     /**
-     * ScanFiles
+     * ScanPackage
+     * Scans a package to download / downloaded by the updater.
+     * @param {String} localData: the local config data from disk
+     */
+    async scanPackage (localData) {
+        if(localData != "") {
+            // Compare the local system with the server data.#
+            console.log(`[PackageManager] Checking updates for package ${p}`);
+        } else {
+            // Scan the local system based on the server data.
+            console.log(`[PackageManager] Starting scan for package ${p}`);
+        }
+    }
+
+    /**
+     * CheckPackage
      * Will check if the current local package matches the server package.
      * @param {string} p: Name of the package to check.
      * @returns {object}: Files for the package that need to be updated.
      */
-    async scanFiles(p) {
-        if (fs.exists(`./xu/${p}.json`)) {
-            // If the cached package exists, then we do a simple comparison check.
-            let cache = fs.open(`./xu/${p}.json`);
-            console.log(cache);
-        } else {
-            // If the file does not exists, do a file-system check
-            let path = "";
-        }
+    async checkPackage(p) {
+        let file = `./app/xu/${p}.json`;
+        let localData = "";
+        let serverData = await this.getPackage(p);
+
+        console.log(serverData);
+
+        // Check if there is already a configuration on the disk.
+        await fs.open(file, 'r', async (err, fd) => {
+            if (err) {
+                // If the configruation does not exists, write data to disk.
+                // We will need to check if there are files currently on the disk for this package.
+                if (err.code === "ENOENT") {
+                    await fs.writeFile(file, JSON.stringify(serverData), (err) => {
+                        if (err) {
+                            throw err;
+                        }
+
+                        console.log('[PackageManager] Configuration file has been saved.');
+                    });
+                } else {
+                    throw err;
+                }
+            } else {
+                // If the configruation does exists, read it's data.
+                await fs.readFile(file, (err, data) => {
+                    if (err) {
+                        throw err;
+                    }
+                    
+                    localData = data;
+                });
+            }
+
+            
+            this.scanPackage(localData);
+        });
     }
 }
