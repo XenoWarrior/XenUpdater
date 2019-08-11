@@ -22,14 +22,33 @@ main {
 
 /** Windows **/
 
-#main {
+#connection {
     display: block;
     transition: all .5s ease;
-}
 
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    padding: 10px;
+}
+#main {
+    display: none;
+    transition: all .5s ease;
+}
 #settings {
     display: none;
     transition: all .5s ease;
+}
+#error {
+    display: none;
+    transition: all .5s ease;
+
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    padding: 10px;
 }
 
 /** Navigation **/
@@ -106,6 +125,9 @@ nav .minimise, nav .close, nav .settings, nav .minimise:hover, nav .close:hover,
     font-size: 12px;
     color: #FFFFFF;
     overflow-y: auto;
+}
+.message {
+    padding: 10px;
 }
 .scrollable {
     height: 231px;

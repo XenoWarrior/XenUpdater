@@ -3,15 +3,24 @@
  */
 
 // Create an instance of the launcher
-async function Initialise() {
-    var launcher = new Launcher();
-    launcher.bindEventListeners();
-    launcher.doProgressTest();
+async function initialiseLauncher() {
+    // Initialise launcher
+    let launcher = new Launcher(true);
+    try {
+        launcher.bindEventListeners();
+    } catch (exception) {
+        console.error(exception);
+    }
 
-    let manager = new PackageManager("ageofaincrad");
-    let packages = await manager.getPackages();
-
-    console.log(packages);
+    // Initialise packages from server
+    let packageManager = new PackageManager("ageofaincrad");
+    try {
+        let result = await packageManager.initialiseService();
+        result ? launcher.switchWindow("main") : launcher.handleError("Unable to connect to server.");
+    } catch (exception) {
+        console.error(exception);
+        launcher.handleError(exception.message);
+    }
 }
 
-Initialise();
+initialiseLauncher();

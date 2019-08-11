@@ -13,7 +13,6 @@ function createWindow() {
         webPreferences: { nodeIntegration: true }
     });
 
-    // and load the index.html of the app.
     window.setMenu(null);
     window.loadFile('./app/index.html');
     window.setMinimumSize(1110, 608);

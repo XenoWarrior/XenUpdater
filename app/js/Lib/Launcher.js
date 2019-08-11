@@ -3,9 +3,8 @@ const electron = require('electron');
 class Launcher {
     constructor(v) {
         this.verbose = v || false;
-
         this.verbose ? console.log("[Launcher] Creating new instance.") : "";
-        this.currentWindow = "main";
+        this.currentWindow = "connection";
     }
 
     bindEventListeners() {
@@ -32,6 +31,8 @@ class Launcher {
 
         document.querySelector(`#${this.currentWindow}`).setAttribute("style", `display:none;`);
         document.querySelector(`#${w}`).setAttribute("style", `display: block`);
+
+        this.currentWindow = w;
     }
 
     changeBackroung(id) {
@@ -62,5 +63,10 @@ class Launcher {
                 clearInterval(interval);
             }
         }, 40);
+    }
+
+    handleError(m) {
+        this.switchWindow("error");
+        document.querySelector("div.error-message").innerText = m;
     }
 }
