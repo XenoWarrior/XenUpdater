@@ -3,6 +3,15 @@
  */
 
 // Create an instance of the launcher
-var launcher = new Launcher(true);
-launcher.bindEventListeners();
-launcher.doProgressTest();
+async function Initialise() {
+    var launcher = new Launcher();
+    launcher.bindEventListeners();
+    launcher.doProgressTest();
+
+    let manager = new PackageManager("ageofaincrad");
+    let packages = await manager.getPackages();
+
+    console.log(packages);
+}
+
+Initialise();
