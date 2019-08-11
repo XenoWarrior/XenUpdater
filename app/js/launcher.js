@@ -11,18 +11,24 @@ document.getElementById("close").addEventListener("click", function(e) {
 });
 
 function updateProgress (p) {
-    document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;`);
+    if(p === 100) {
+        document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;box-shadow: 0px 0px 50px green;`);
+        document.querySelector("div.progress").setAttribute("style", `box-shadow: 0px 0px 50px rgba(32, 143, 233, 0.6)`);
+        document.querySelector(".play.disabled").setAttribute("class", `play`);
+    } else {
+        document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;`);
+    }
 }
 
 async function doProgressTest () {
     let p = 0;
-    setInterval(() => {
+    let interval = setInterval(() => {
         if(p < 100) {
             updateProgress(++p);
         } else {
-            p = 0;
+            clearInterval(interval);
         }
-    }, 100);
+    }, 40);
 }
 
 doProgressTest();
