@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 /**
  * Manager for service packages
  */
@@ -37,7 +39,7 @@ class PackageManager {
     /**
      * GetPackage
      * Will fetch a specific package configuration from the updater service.
-     * @param {string} p: the package name
+     * @param {string} p: the package name.
      */
     async getPackage(p) {
         try {
@@ -45,6 +47,32 @@ class PackageManager {
             return await data.json();
         } catch (exception) {
             throw exception;
+        }
+    }
+
+    /**
+     * GetFiles
+     * Gets a list of files from a specified package.
+     * @param {string} p: the package name.
+     */
+    async getFiles(p) {
+        
+    }
+
+    /**
+     * ScanFiles
+     * Will check if the current local package matches the server package.
+     * @param {string} p: Name of the package to check.
+     * @returns {object}: Files for the package that need to be updated.
+     */
+    async scanFiles(p) {
+        if (fs.exists(`./xu/${p}.json`)) {
+            // If the cached package exists, then we do a simple comparison check.
+            let cache = fs.open(`./xu/${p}.json`);
+            console.log(cache);
+        } else {
+            // If the file does not exists, do a file-system check
+            let path = "";
         }
     }
 }

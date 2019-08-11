@@ -17,7 +17,7 @@ function createWindow() {
     window.setMinimumSize(1110, 608);
     window.setMaximumSize(1110, 608);
     window.setFullScreenable(false);
-    window.openDevTools()
+    // window.openDevTools()
 }
 
 app.on('ready', createWindow);
