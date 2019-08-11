@@ -17,6 +17,8 @@ async function initialiseLauncher() {
     try {
         let result = await packageManager.initialiseService();
         result ? launcher.switchWindow("main") : launcher.handleError("Unable to connect to server.");
+
+        launcher.doProgressTest();
     } catch (exception) {
         console.error(exception);
         launcher.handleError(exception.message);

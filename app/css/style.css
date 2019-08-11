@@ -116,9 +116,11 @@ nav .minimise, nav .close, nav .settings, nav .minimise:hover, nav .close:hover,
     border: 1px solid rgba(255, 255, 255, .2);
     background-color: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
+    height: 100%;
 }
 #news {
     overflow: hidden;
+    height: 100%;
 }
 #news, #notes {
     text-align: left;
@@ -126,6 +128,13 @@ nav .minimise, nav .close, nav .settings, nav .minimise:hover, nav .close:hover,
     color: #FFFFFF;
     overflow-y: auto;
 }
+
+.percent {
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 12px;
+}
+
 .message {
     padding: 10px;
 }
