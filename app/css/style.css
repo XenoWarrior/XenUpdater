@@ -4,6 +4,7 @@
 main {
     background-image: url('../images/box_background_empty.png');
     background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -13,11 +14,12 @@ main {
     bottom: 0;
     z-index: -999;
     padding-top: 32px;
+    
+    flex: 1 0 auto;
 }
 .container {
     margin-top: 100px;
 }
-
 /** Navigation **/
 
 nav .nav-wrapper {
@@ -28,7 +30,6 @@ nav .nav-wrapper {
 nav li {
     font-family: sans-serif, Arial, Helvetica;
     font-size: 14px;
-    /* text-shadow: 0px 0px 5px #FFFFFF; */
     transition: all .5s ease;
 }
 nav li:hover {
@@ -80,34 +81,19 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 
 /** Components **/
 
-#status {
-    background-image: url('../images/server-status.png');
-    height: 30px;
-    width: 587px;
-    text-align: right;
-    color: #FFFFFF;
-    font-size: 12px;
-}
-#status div {
-    line-height: 29px;
-}
-#patch-notes {
-    background-image: url('../images/patch-notes.png');
+#notes {
+    border: 1px solid rgba(255, 255, 255, .2);
+    background-color: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
-    width: 587px;
 }
 #news {
     overflow: hidden;
 }
-#news, #patch-notes {
-    height: 267px;
+#news, #notes {
     text-align: left;
     font-size: 12px;
     color: #FFFFFF;
     overflow-y: auto;
-}
-.online {
-    color: greenyellow;
 }
 .scrollable {
     height: 231px;
@@ -116,17 +102,22 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
     overflow-y: auto;
     overflow-x: hidden;
 }
+.version {
+    color: grey;
+}
+.news {
+    margin-bottom: 3px;
+}
 
 /** Content **/
 
 #content-container {
     margin-top: 70px;
-    margin-left: 124px;
+    margin-bottom: 0px;
 }
 .content-header {
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, .2);
-    width: 100%;
 }
 .content-text {
     padding: 10px;
@@ -136,7 +127,7 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 
 /** Play Button **/
 
-#play-game {
+.play {
     background-image: url('../images/start_normal.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -145,29 +136,45 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
     text-align: center;
     cursor: pointer;
 }
-#play-game:hover {
+.play:hover {
     background-image: url('../images/start_hover.png');
     background-repeat: no-repeat;
     transition: all .5s ease;
 }
-#play-game:disabled {
+.play:disabled {
     background-image: url('../images/start_updating.png');
     background-repeat: no-repeat;
     transition: all .5s ease;
 }
 
 /** Progress Bar **/
-#progress-bar {
-    background-image: url('../images/progress-bar-back.png');
-    opacity: 0.2;
-    width: 851px;
-    height: 69px;  display: block;
+
+.progress {
+    background-color: rgba(0, 148, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .2);
+    width: 100%;
+    height: 14px;
+    display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: all .5s ease;
 }
-#progress-bar-front {
-    background-image: url('../images/progress-bar-back.png');
-    opacity: 0.5;
+.progress-back {
+    display: block;
+    background-color: rgba(32, 143, 233, 1);
+    width: 0%;
+    height: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    transition: all .5s ease;
+}
+.progress-limiter {
+    background-image: url('../images/progress-limiter.png');
+    width: 3px;
+    height: 14px;
+    float: right;
 }
 
 /** Scrollbar **/
@@ -184,4 +191,43 @@ nav #minimise, nav #close, nav #settings, nav #minimise:hover, nav #close:hover,
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/** Status **/
+
+#status {
+    padding: 0px;
+}
+.server-status {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.875rem;
+    padding: 0 0.75rem 0 2.5rem;
+    width: 250px;
+    float: right;
+}
+.server-status::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-top: 1.875rem solid rgba(0, 0, 0, 0.5);
+    ;
+    border-left: 1.875rem solid transparent;
+    z-index: -1;
+}
+.server-status .title {
+    font-size: 0.675rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: gray;
+}
+.server-status .status {
+    font-size: 0.675rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: white;
 }
