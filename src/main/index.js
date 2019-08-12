@@ -24,7 +24,7 @@ function createWindow() {
 		transparent: true,
 		icon: '~@/assets/images/launcher_logo.png',
 		
-		webPreferences: { nodeIntegration: true }
+		webPreferences: { webSecurity: false }
 	})
 	
 	mainWindow.loadURL(winURL)

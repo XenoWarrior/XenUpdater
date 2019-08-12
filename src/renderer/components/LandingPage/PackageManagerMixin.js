@@ -9,27 +9,32 @@ export default {
 	},
 	methods: {
 		async initialiseService() {
-			fetch(this.serviceUrl)
-			.then(response => {
-				this.serviceConfig = response.json();
+			try {
+				let r = await fetch(this.serviceUrl, {});
+				this.serviceConfig = await r.json();
 				
 				let packageNames = Object.keys(this.serviceConfig.apps);
 				for (let i = 0; i < packageNames.length; i++) {
-					this.packageList[packageNames[i]] = this.getPackage(packageNames[i]);
+					this.packageList[packageNames[i]] = await this.getPackage(packageNames[i]);
 				}
 				
 				return true;
-			}).then(error => console.error(error));
+			} catch (exception) {
+				throw exception;
+			}
 		},
 		
 		async getPackage(p) {
-			if (this.packageList.hasOwnProperty(p)) {
-				return this.packageList(p);
-			} else {
-				fetch(`https://xenupdater.projectge.com/${this.serviceName}/xu/update/${p}.json`)
-				.then(data => {
-					return data.json
-				});
+			try {
+				if (this.packageList.hasOwnProperty(p)) {
+					return this.packageList(p);
+				} else {
+					let data = await fetch(`https://xenupdater.projectge.com/${this.serviceName}/xu/update/${p}.json`);
+					return await data.json();
+				}
+				
+			} catch (exception) {
+				throw exception;
 			}
 		},
 		

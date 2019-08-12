@@ -234,7 +234,7 @@
 					let result = await this.initialiseService();
 					result ? this.switchWindow("main") : this.handleError("Unable to connect to server.");
 
-					// launcher.doProgressTest();
+					this.doProgressTest();
 				} catch (exception) {
 					console.error(exception);
 					this.handleError(exception.message);
