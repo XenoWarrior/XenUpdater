@@ -1,5 +1,5 @@
 {
-  "name": "zenupdater",
+  "name": "XenUpdater",
   "version": "0.0.1",
   "author": "Ashley Scott & Jordan Shaw",
   "description": "Updater for files",
@@ -17,8 +17,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "zenupdater",
-    "appId": "com.example.zenupdater",
+    "productName": "XenUpdater",
+    "appId": "com.example.XenUpdater",
     "directories": {
       "output": "build"
     },
