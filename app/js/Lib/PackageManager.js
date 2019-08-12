@@ -38,6 +38,15 @@ class PackageManager {
     }
 
     /**
+     * GetPackages
+     * Fetches all known packages, for use after initialisation.
+     * @returns: the package list
+     */
+    async getPackages() {
+        return Object.keys(this.packageList);
+    }
+
+    /**
      * GetPackage
      * Will fetch a specific package configuration from the updater service / memory.
      * @param {string} packageName: the package name.
@@ -45,7 +54,7 @@ class PackageManager {
     async getPackage(packageName) {
         try {
             if (this.packageList.hasOwnProperty(packageName)) {
-                return this.packageList(packageName);
+                return this.packageList[packageName];
             } else {
                 let data = await fetch(`https://xenupdater.projectge.com/${this.serviceName}/xu/update/${packageName}.json`);
                 return await data.json();
