@@ -1,4 +1,5 @@
 const fs = require('fs');
+const md5 = require('md5-file');
 
 /**
  * Manager for service packages
@@ -56,17 +57,6 @@ class PackageManager {
     }
 
     /**
-     * GetFiles
-     * Gets a list of files from a specified package.
-     * @param {string} packageName: the package name.
-     */
-    async getFiles(packageName) {
-        if (this.packageList.hasOwnProperty(packageName)) {
-            console.log(this.packageList);
-        }
-    }
-
-    /**
      * CheckPackage
      * Will check if the current local package matches the server package.
      * @param {string} packageName: Name of the package to check.
@@ -110,30 +100,31 @@ class PackageManager {
         let serverFiles = Object.keys(serverData.package_files);
         let downloadList = [];
 
-        if (localData != "") {
+        if (localData) {
             // A build already exists on the system.
             console.log(`[PackageManager] Build exists, checking updates for package ${packageName}`);
 
             localData = JSON.parse(localData);
-
             let localFiles = Object.keys(localData.package_files);
             serverFiles.forEach(f => {
-                // If a new file, or changed file, add it to download.
+                // Add new files if they do not exist on the file system, the local config and if they do not match the server file hash.
                 if (!fs.existsSync(`${packageName}/${f}`) || !localFiles.hasOwnProperty(f) || serverFiles[f] != localFiles[f]) {
                     downloadList.push(f);
                 }
             });
         } else {
+            // No local cache found.
             console.log(`[PackageManager] Local config does not exist, checking if ${packageName} has files.`);
 
+            // Check if there are files
             let dir = [];
             try {
                 dir = this.readPackageDir(packageName);
-
-                console.log("DIR", dir);
+                console.log(`[PackageManager] Files in ${packageName}: `, dir);
 
                 serverFiles.forEach(f => {
-                    if (!dir.includes(f)) {
+                    // Check if the file does not exist, or does not match the server file.
+                    if (!dir.includes(f) || serverFiles[f] != md5(`${packageName}/${f}`)) {
                         downloadList.push(f);
                     }
                 })
