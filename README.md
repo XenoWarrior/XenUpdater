@@ -1,4 +1,4 @@
-# zenupdater
+# xenupdater
 
 > Updater for files
 

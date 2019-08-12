@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'zenupdater'
+    name: 'xenupdater'
   }
 </script>
 
