@@ -59,5 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+# custom
 package-lock.json
 .vscode/
+app/xu/

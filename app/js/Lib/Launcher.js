@@ -82,6 +82,10 @@ class Launcher {
         }
     }
 
+    setMessage(m) {
+        document.querySelector("#percent").innerText = `${m}`;
+    }
+
     /**
      * HandleError
      * Display a message in the launcher when something goes wrong.
