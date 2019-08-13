@@ -13,7 +13,8 @@ async function initialiseLauncher() {
     }
 
     // Initialise packages from server
-    let packageManager = new PackageManager("ageofaincrad");
+    console.log(private);
+    let packageManager = new PackageManager(private.env.SERVICE_NAME);
     try {
         let result = await packageManager.initialiseService();
         if (result) {
