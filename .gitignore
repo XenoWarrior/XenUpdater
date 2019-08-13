@@ -64,4 +64,3 @@ typings/
 package-lock.json
 .vscode/
 app/xu/
-app/js/env.js
