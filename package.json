@@ -1,26 +1,26 @@
 {
-  "name": "xenupdater",
-  "version": "1.0.0",
-  "description": "Updater service for apps and games",
-  "main": "main.js",
-  "dependencies": {
-    "md5-file": "^4.0.0"
-  },
-  "devDependencies": {
-    "electron": "^6.0.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/XenoWarrior/XenUpdater.git"
-  },
-  "author": "Ashley Scott",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/XenoWarrior/XenUpdater/issues"
-  },
-  "homepage": "https://github.com/XenoWarrior/XenUpdater#readme"
+	"name": "xenupdater",
+	"version": "1.0.0",
+	"description": "Updater service for apps and games",
+	"main": "main.js",
+	"dependencies": {
+		"md5-file": "^4.0.0"
+	},
+	"devDependencies": {
+		"electron": "^6.0.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "electron ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/XenoWarrior/XenUpdater.git"
+	},
+	"author": "Ashley Scott",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/XenoWarrior/XenUpdater/issues"
+	},
+	"homepage": "https://github.com/XenoWarrior/XenUpdater#readme"
 }
