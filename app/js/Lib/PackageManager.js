@@ -1,5 +1,6 @@
 const fs = require('fs');
 const md5 = require('md5-file');
+const edl = require('electron-dl');
 
 /**
  * Manager for service packages
@@ -9,9 +10,11 @@ class PackageManager {
      * Constructor 
      * @param {string} s: Name of the service to fetch configuration for.
      */
-    constructor(s) {
+    constructor(sv, s) {
         this.serviceName = s;
-        this.serviceUrl = `https://xenupdater.projectge.com/${this.serviceName}/xu/update/updater_cfg.json`;
+        this.serverUrl = sv;
+
+        this.serviceUrl = `${this.serverUrl}/${this.serviceName}/xu/update/updater_cfg.json`;
         this.packageList = {};
         this.serviceConfig = {};
     }
@@ -56,7 +59,7 @@ class PackageManager {
             if (this.packageList.hasOwnProperty(packageName)) {
                 return this.packageList[packageName];
             } else {
-                let data = await fetch(`https://xenupdater.projectge.com/${this.serviceName}/xu/update/${packageName}.json`);
+                let data = await fetch(`${this.serverUrl}/${this.serviceName}/xu/update/${packageName}.json`);
                 return await data.json();
             }
 
@@ -164,4 +167,6 @@ class PackageManager {
         }
     }
 
+    downloadFile(f) {
+    }
 }
