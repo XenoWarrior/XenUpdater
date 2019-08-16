@@ -102,8 +102,6 @@
 		"type": "git",
 		"url": "git+https://github.com/XenoWarrior/XenUpdater.git"
 	},
-	"author": "Ashley Scott",
-	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/XenoWarrior/XenUpdater/issues"
 	},
