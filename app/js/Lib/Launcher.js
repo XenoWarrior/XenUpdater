@@ -68,18 +68,25 @@ class Launcher {
      * TODO: Add support for multiple progress bars.
      * @param {int} p 
      */
-    updateProgress(p) {
+    updateProgress(message, filePercent, fileIndex, fileTotal) {
+
+        let p = this.getWholePercent(fileIndex, fileTotal);
         this.verbose ? console.log(`[Launcher] Updating progress: [${p}]`) : "";
 
         if (p === 100) {
-            document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;box-shadow: 0px 0px 50px green;`);
+            document.querySelector("#main-progress-back").setAttribute("style", `width: ${p}%;box-shadow: 0px 0px 50px green;`);
+            document.querySelector("#secondary-progress-back").setAttribute("style", `width: ${p}%;box-shadow: 0px 0px 50px green;`);
             document.querySelector("div.progress").setAttribute("style", `box-shadow: 0px 0px 50px rgba(32, 143, 233, 0.6)`);
-            document.querySelector(".play.disabled").setAttribute("class", `play`);
             document.querySelector("#percent").innerText = "";
         } else {
-            document.querySelector("div.progress-back").setAttribute("style", `width: ${p}%;`);
-            document.querySelector("#percent").innerText = `${p}%`;
+            document.querySelector("#main-progress-back").setAttribute("style", `width: ${p}%;`);
+            document.querySelector("#secondary-progress-back").setAttribute("style", `width: ${filePercent}%;`);
+            document.querySelector("#percent").innerText = `${message} (${filePercent}%)`;
         }
+    }
+
+    getWholePercent(percentFor, percentOf) {
+        return Math.floor(percentFor / percentOf * 100);
     }
 
     setMessage(m) {
