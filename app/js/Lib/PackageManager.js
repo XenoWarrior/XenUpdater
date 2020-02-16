@@ -96,6 +96,8 @@ class PackageManager {
             });
         }
 
+        console.log("LocalData", localData);
+
         return this.scanPackageDir(packageName, localData, serverData);
     }
 

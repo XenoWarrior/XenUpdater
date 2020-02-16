@@ -100,7 +100,7 @@ class Launcher {
      */
     handleError(m) {
         this.switchWindow("error");
-        document.querySelector("div.error-message").innerText = m;
+        // document.querySelector("div.error-message").innerHTML = m;
     }
 
     /**

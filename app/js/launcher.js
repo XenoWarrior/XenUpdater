@@ -13,11 +13,9 @@ async function initialiseLauncher() {
     }
 
     // Initialise packages from server
-    console.log(private);
     let packageManager = new PackageManager(private.env.SERVICE_URL, private.env.SERVICE_NAME);
     try {
-        let result = await packageManager.initialiseService();
-        if (result) {
+        if (await packageManager.initialiseService()) {
             launcher.switchWindow("main");
 
             let packages = await packageManager.getPackages();
@@ -32,7 +30,7 @@ async function initialiseLauncher() {
                         await packageManager.downloadFile(download[x], packages[i], (bytes, percent, length) => {
                             let done = Math.round(bytes / 1000000) || 1;
                             let total = Math.round(length / 1000000) || 1;
-                            launcher.updateProgress(`Downloading file ${x+1} of ${download.length} (${done}MB of ${total}MB) | `, percent, x + 1, download.length);
+                            launcher.updateProgress(`Downloading file ${x + 1} of ${download.length} (${done}MB of ${total}MB) | `, percent, x + 1, download.length);
                         });
                     }
                 }, 3000);
